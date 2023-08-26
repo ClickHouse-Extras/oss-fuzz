@@ -303,10 +303,17 @@ class InternalGeneric(BaseCi):
     # detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
 
+    logging.info('MY DEBUG InternalGithub 1')
+
     if not image_repo_path:
       return get_build_preparation_failure()
 
+    logging.info('MY DEBUG InternalGithub 2')
+
     manager = self._create_repo_manager_for_project_src_path()
+
+    logging.info('MY DEBUG InternalGithub 3')
+
     return BuildPreparationResult(success=True,
                                   image_repo_path=image_repo_path,
                                   repo_manager=manager)
