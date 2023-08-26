@@ -254,6 +254,9 @@ class InternalGithub(GithubCiMixin, BaseCi):
     returns the BuildPreparationResult."""
     logging.info('InternalGithub: preparing for fuzzer build.')
     assert self.config.pr_ref or self.config.git_sha
+
+    logging.info('MY DEBUG InternalGithub 0')
+
     # _detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
 
