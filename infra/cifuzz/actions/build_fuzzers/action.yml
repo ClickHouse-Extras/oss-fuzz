@@ -53,3 +53,4 @@ runs:
     CFL_PLATFORM: 'github'
     KEEP_UNAFFECTED_FUZZ_TARGETS: ${{ inputs.keep-unaffected-fuzz-targets }}
     OUTPUT_SARIF: ${{ inputs.output-sarif }}
+    MY_DEBUG_CHECK: 'True'
