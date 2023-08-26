@@ -326,6 +326,10 @@ def build_external_project_docker_image(project_src, build_integration_path):
   command = [
       '-t', docker.EXTERNAL_PROJECT_IMAGE, '-f', dockerfile_path, project_src
   ]
+
+  logging.info('MY DEBUG helper.docker_build %s %s', docker.EXTERNAL_PROJECT_IMAGE, dockerfile_path)
+  logging.info(open(dockerfile_path, "r").read())
+    
   return helper.docker_build(command)
 
 
