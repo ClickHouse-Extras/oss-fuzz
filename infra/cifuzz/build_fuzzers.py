@@ -66,6 +66,9 @@ class Builder:  # pylint: disable=too-many-instance-attributes
   def build_image_and_checkout_src(self):
     """Builds the project builder image and checkout source code for the patch
     we want to fuzz (if necessary). Returns True on success."""
+
+    logging.info('MY DEBUG build_fuzzers.py:Builder:build_image_and_checkout_src()')
+    
     result = self.ci_system.prepare_for_fuzzer_build()
     if not result.success:
       return False
@@ -131,6 +134,9 @@ class Builder:  # pylint: disable=too-many-instance-attributes
   def build(self):
     """Builds the image, checkouts the source (if needed), builds the fuzzers
     and then removes the unaffectted fuzzers. Returns True on success."""
+
+    logging.info('MY DEBUG build_fuzzers.py:Builder:build()')
+
     methods = [
         self.build_image_and_checkout_src,
         self.build_fuzzers,
@@ -167,6 +173,9 @@ def build_fuzzers(config):
   Returns:
     True if build succeeded.
   """
+
+  logging.info('MY DEBUG build_fuzzers.py:build_fuzzers()')
+
   # Do some quick validation.
   if config.project_src_path and not check_project_src_path(
       config.project_src_path):
