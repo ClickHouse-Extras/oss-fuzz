@@ -256,12 +256,23 @@ class InternalGithub(GithubCiMixin, BaseCi):
     assert self.config.pr_ref or self.config.git_sha
     # _detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
+
+    logging.info('MY DEBUG InternalGithub 1')
+
     if not image_repo_path:
       return get_build_preparation_failure()
 
+    logging.info('MY DEBUG InternalGithub 2')
+
     # Use the same name used in the docker image so we can overwrite it.
     manager = self._copy_repo_from_image(image_repo_path)
+
+    logging.info('MY DEBUG InternalGithub 3')
+
     self._checkout_specified_commit(manager)
+
+    logging.info('MY DEBUG InternalGithub 4')
+
     return BuildPreparationResult(success=True,
                                   image_repo_path=image_repo_path,
                                   repo_manager=manager)
@@ -302,18 +313,10 @@ class InternalGeneric(BaseCi):
     logging.info('InternalGeneric: preparing for fuzzer build.')
     # detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
-
-    logging.info('MY DEBUG InternalGithub 1')
-
     if not image_repo_path:
       return get_build_preparation_failure()
 
-    logging.info('MY DEBUG InternalGithub 2')
-
     manager = self._create_repo_manager_for_project_src_path()
-
-    logging.info('MY DEBUG InternalGithub 3')
-
     return BuildPreparationResult(success=True,
                                   image_repo_path=image_repo_path,
                                   repo_manager=manager)
