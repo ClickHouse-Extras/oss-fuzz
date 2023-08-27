@@ -39,7 +39,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ls -al /opt/
+    - run: pwd
       shell: bash
 #  using: 'docker'
 #  image: '../../../build_fuzzers.Dockerfile'
