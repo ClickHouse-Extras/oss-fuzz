@@ -37,8 +37,11 @@ inputs:
     required: false
     default: false
 runs:
-  using: 'docker'
-  image: '../../../build_fuzzers.Dockerfile'
+  using: "composite"
+  steps:
+    - run: ls -al /
+#  using: 'docker'
+#  image: '../../../build_fuzzers.Dockerfile'
   env:
     OSS_FUZZ_PROJECT_NAME: ${{ inputs.oss-fuzz-project-name }}
     LANGUAGE: ${{ inputs.language }}
