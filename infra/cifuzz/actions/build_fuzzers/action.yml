@@ -39,7 +39,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: find / -name "build_fuzzers.Dockerfile" 2> /dev/null
+    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/
+      shell: bash
+    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/infra/
+      shell: bash
+    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/projects/clickhouse/
       shell: bash
 #  using: 'docker'
 #  image: '../../../build_fuzzers.Dockerfile'
