@@ -37,28 +37,28 @@ inputs:
     required: false
     default: false
 runs:
-  using: "composite"
-  steps:
-    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/
-      shell: bash
-    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/infra/
-      shell: bash
-    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/projects/clickhouse/
-      shell: bash
-#  using: 'docker'
-#  image: '../../../build_fuzzers.Dockerfile'
-#  env:
-#    OSS_FUZZ_PROJECT_NAME: ${{ inputs.oss-fuzz-project-name }}
-#    LANGUAGE: ${{ inputs.language }}
-#    DRY_RUN: ${{ inputs.dry-run}}
-#    ALLOWED_BROKEN_TARGETS_PERCENTAGE: ${{ inputs.allowed-broken-targets-percentage}}
-#    SANITIZER: ${{ inputs.sanitizer }}
-#    ARCHITECTURE: ${{ inputs.architecture }}
-#    PROJECT_SRC_PATH: ${{ inputs.project-src-path }}
-#    LOW_DISK_SPACE: 'True'
-#    BAD_BUILD_CHECK: ${{ inputs.bad-build-check }}
-#    CIFUZZ_DEBUG: 'True'
-#    CFL_PLATFORM: 'github'
-#    KEEP_UNAFFECTED_FUZZ_TARGETS: ${{ inputs.keep-unaffected-fuzz-targets }}
-#    OUTPUT_SARIF: ${{ inputs.output-sarif }}
-#    MY_DEBUG_CHECK: 'True'
+#  using: "composite"
+#  steps:
+#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/
+#      shell: bash
+#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/infra/
+#      shell: bash
+#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/projects/clickhouse/
+#      shell: bash
+  using: 'docker'
+  image: '../../../build_fuzzers.Dockerfile'
+  env:
+    OSS_FUZZ_PROJECT_NAME: ${{ inputs.oss-fuzz-project-name }}
+    LANGUAGE: ${{ inputs.language }}
+    DRY_RUN: ${{ inputs.dry-run}}
+    ALLOWED_BROKEN_TARGETS_PERCENTAGE: ${{ inputs.allowed-broken-targets-percentage}}
+    SANITIZER: ${{ inputs.sanitizer }}
+    ARCHITECTURE: ${{ inputs.architecture }}
+    PROJECT_SRC_PATH: ${{ inputs.project-src-path }}
+    LOW_DISK_SPACE: 'True'
+    BAD_BUILD_CHECK: ${{ inputs.bad-build-check }}
+    CIFUZZ_DEBUG: 'True'
+    CFL_PLATFORM: 'github'
+    KEEP_UNAFFECTED_FUZZ_TARGETS: ${{ inputs.keep-unaffected-fuzz-targets }}
+    OUTPUT_SARIF: ${{ inputs.output-sarif }}
+    MY_DEBUG_CHECK: 'True'
