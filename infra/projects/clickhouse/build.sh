@@ -72,19 +72,20 @@ else
     cmake  -G Ninja $SRC/ClickHouse ${CLICKHOUSE_CMAKE_FLAGS[@]} -DWITH_COVERAGE=1 -DSANITIZE=$SANITIZER
 fi
 
-TARGETS=$(find $SRC/ClickHouse/src $SRC/ClickHouse/programs -name '*_fuzzer.cpp' -execdir basename {} .cpp ';' | tr '\n' ' ')
-
-for FUZZER_TARGET in $TARGETS
-do
-    # Skip this fuzzer because of linker errors (the size of the binary is too big)
-    if [ "$FUZZER_TARGET" = "execute_query_fuzzer" ]; then
-        continue
-    fi
-    ninja -j $NUM_JOBS $FUZZER_TARGET
-    # Find this binary in build directory and strip it
-    TEMP=$(find $SRC/ClickHouse/build -name $FUZZER_TARGET)
-    strip --strip-unneeded $TEMP
-done
+#TARGETS=$(find $SRC/ClickHouse/src $SRC/ClickHouse/programs -name '*_fuzzer.cpp' -execdir basename {} .cpp ';' | tr '\n' ' ')
+#
+#for FUZZER_TARGET in $TARGETS
+#do
+#    # Skip this fuzzer because of linker errors (the size of the binary is too big)
+#    if [ "$FUZZER_TARGET" = "execute_query_fuzzer" ]; then
+#        continue
+#    fi
+#    ninja -j $NUM_JOBS $FUZZER_TARGET
+#    # Find this binary in build directory and strip it
+#    TEMP=$(find $SRC/ClickHouse/build -name $FUZZER_TARGET)
+#    strip --strip-unneeded $TEMP
+#done
+ninja -j $NUM_JOBS fuzzers
 
 # copy out fuzzer binaries
 find $SRC/ClickHouse/build -name '*_fuzzer' -exec cp -v '{}' $OUT ';'
