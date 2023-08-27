@@ -37,14 +37,6 @@ inputs:
     required: false
     default: false
 runs:
-#  using: "composite"
-#  steps:
-#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/
-#      shell: bash
-#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/infra/
-#      shell: bash
-#    - run: ls -al /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/projects/clickhouse/
-#      shell: bash
   using: 'docker'
   image: '../../../build_fuzzers.Dockerfile'
   env:
@@ -61,4 +53,3 @@ runs:
     CFL_PLATFORM: 'github'
     KEEP_UNAFFECTED_FUZZ_TARGETS: ${{ inputs.keep-unaffected-fuzz-targets }}
     OUTPUT_SARIF: ${{ inputs.output-sarif }}
-    MY_DEBUG_CHECK: 'True'

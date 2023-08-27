@@ -43,6 +43,4 @@ RUN apt-get update -y \
 RUN git clone -j 8 --recursive https://github.com/ClickHouse/ClickHouse $SRC/ClickHouse
 WORKDIR $SRC/ClickHouse
 
-RUN whereis compile
-
 COPY build.sh $SRC/

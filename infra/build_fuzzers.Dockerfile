@@ -18,20 +18,16 @@
 
 FROM gcr.io/oss-fuzz-base/cifuzz-base
 
+# Python file to execute when the docker container starts up
+# We can't use the env var $OSS_FUZZ_ROOT here. Since it's a constant env var,
+# just expand to '/opt/oss-fuzz'.
+ENTRYPOINT ["python3", "/opt/oss-fuzz/infra/cifuzz/build_fuzzers_entrypoint.py"]
+
 WORKDIR ${OSS_FUZZ_ROOT}/infra
 
 # Update infra source code.
 ADD . ${OSS_FUZZ_ROOT}/infra
 # Update projects/clickhouse source code
 ADD ./projects/clickhouse ${OSS_FUZZ_ROOT}/projects/clickhouse
-#ADD ../projects/clickhouse ${OSS_FUZZ_ROOT}/projects/clickhouse
-#ADD /home/ubuntu/actions-runner/_work/_actions/clickhouse/oss-fuzz/no-implicit-int-float-conversion/projects/clickhouse ${OSS_FUZZ_ROOT}/projects/clickhouse
 
 RUN python3 -m pip install -r ${OSS_FUZZ_ROOT}/infra/cifuzz/requirements.txt
-
-RUN head /opt/oss-fuzz/infra/cifuzz/build_fuzzers_entrypoint.py
-
-# Python file to execute when the docker container starts up
-# We can't use the env var $OSS_FUZZ_ROOT here. Since it's a constant env var,
-# just expand to '/opt/oss-fuzz'.
-ENTRYPOINT ["python3", "/opt/oss-fuzz/infra/cifuzz/build_fuzzers_entrypoint.py"]

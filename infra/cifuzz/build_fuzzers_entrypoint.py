@@ -28,9 +28,6 @@ logs.init()
 
 def build_fuzzers_entrypoint():
   """Builds OSS-Fuzz project's fuzzers for CI tools."""
-
-  logging.info('MY DEBUG build_fuzzers_entrypoint.py:build_fuzzers_entrypoint()')
-
   config = config_utils.BuildFuzzersConfig()
 
   if config.dry_run:

@@ -254,29 +254,14 @@ class InternalGithub(GithubCiMixin, BaseCi):
     returns the BuildPreparationResult."""
     logging.info('InternalGithub: preparing for fuzzer build.')
     assert self.config.pr_ref or self.config.git_sha
-
-    logging.info('MY DEBUG InternalGithub 0 [%s]', helper.Project(self.config.oss_fuzz_project_name).dockerfile_path)
-    logging.info(open(helper.Project(self.config.oss_fuzz_project_name).dockerfile_path, "r").read())
-
     # _detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
-
-    logging.info('MY DEBUG InternalGithub 1')
-
     if not image_repo_path:
       return get_build_preparation_failure()
 
-    logging.info('MY DEBUG InternalGithub 2')
-
     # Use the same name used in the docker image so we can overwrite it.
     manager = self._copy_repo_from_image(image_repo_path)
-
-    logging.info('MY DEBUG InternalGithub 3')
-
     self._checkout_specified_commit(manager)
-
-    logging.info('MY DEBUG InternalGithub 4')
-
     return BuildPreparationResult(success=True,
                                   image_repo_path=image_repo_path,
                                   repo_manager=manager)
@@ -317,6 +302,7 @@ class InternalGeneric(BaseCi):
     logging.info('InternalGeneric: preparing for fuzzer build.')
     # detect_main_repo builds the image as a side effect.
     _, image_repo_path = self._detect_main_repo()
+
     if not image_repo_path:
       return get_build_preparation_failure()
 
@@ -340,10 +326,6 @@ def build_external_project_docker_image(project_src, build_integration_path):
   command = [
       '-t', docker.EXTERNAL_PROJECT_IMAGE, '-f', dockerfile_path, project_src
   ]
-
-  logging.info('MY DEBUG helper.docker_build %s %s', docker.EXTERNAL_PROJECT_IMAGE, dockerfile_path)
-  logging.info(open(dockerfile_path, "r").read())
-    
   return helper.docker_build(command)
 
 
