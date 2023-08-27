@@ -39,7 +39,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: pwd
+    - run: find / -name "build_fuzzers.Dockerfile" 2> /dev/null
       shell: bash
 #  using: 'docker'
 #  image: '../../../build_fuzzers.Dockerfile'
