@@ -22,6 +22,8 @@ WORKDIR ${OSS_FUZZ_ROOT}/infra
 
 # Update infra source code.
 ADD . ${OSS_FUZZ_ROOT}/infra
+# Update projects/clickhouse source code
+ADD ../projects/clickhouse ${OSS_FUZZ_ROOT}/projects/clickhouse
 
 RUN python3 -m pip install -r ${OSS_FUZZ_ROOT}/infra/cifuzz/requirements.txt
 
